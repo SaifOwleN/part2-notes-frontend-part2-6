@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 const Login = ({
   loginToSite,
   username,
@@ -7,14 +9,14 @@ const Login = ({
 }) => {
   return (
     <form onSubmit={loginToSite} className="mb-3">
-      username:{" "}
+      username:{' '}
       <input
         className="border-2 border-black"
         value={username}
         onChange={handleUsernameChange}
       />
       <br />
-      password:{" "}
+      password:{' '}
       <input
         className="border-2 border-black "
         value={password}
@@ -27,4 +29,12 @@ const Login = ({
     </form>
   )
 }
+Login.propTypes = {
+  loginToSite: PropTypes.func.isRequired,
+  handleUsernameChange: PropTypes.func.isRequired,
+  handlePasswordChange: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+}
+
 export default Login

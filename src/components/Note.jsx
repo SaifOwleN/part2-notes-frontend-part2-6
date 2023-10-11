@@ -1,5 +1,5 @@
 const Note = ({ note, toggleImportance, deleteNote }) => {
-  const label = note.important ? "make not important" : "make important"
+  const label = note.important ? 'make not important' : 'make important'
 
   return (
     <li className=" text-md">

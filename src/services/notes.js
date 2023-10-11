@@ -1,6 +1,6 @@
-import axios from "axios"
-const baseUrl = "/api/notes"
-const userUrl = "/api/users"
+import axios from 'axios'
+const baseUrl = '/api/notes'
+const userUrl = '/api/users'
 let token = null
 
 const setToken = (newToken) => {
@@ -11,7 +11,7 @@ const getAll = async (userID) => {
   const noteString = await axios
     .get(`${userUrl}/${userID}`)
     .then((response) => response.data.notes.toString())
-  let noteIds = noteString.split(",")
+  let noteIds = noteString.split(',')
   let notes = []
   for (let i = 0; i < noteIds.length; i++) {
     const note = await axios.get(`${baseUrl}/${noteIds[i]}`).then((r) => r.data)

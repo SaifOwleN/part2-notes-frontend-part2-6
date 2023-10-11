@@ -1,23 +1,24 @@
-import { useState, useEffect, useRef } from "react"
-import axios from "axios"
-import Note from "./components/Note"
-import noteService from "./services/notes"
-import signinService from "./services/signin"
-import Login from "./components/login"
-import Togglable from "./components/Toggelability"
-import NoteForm from "./components/NoteForm"
+import { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
+import Note from './components/Note'
+import noteService from './services/notes'
+import signinService from './services/signin'
+import Login from './components/login'
+import Togglable from './components/Togglable'
+import NoteForm from './components/NoteForm'
+
 const App = () => {
   const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState("")
+  const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(false)
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [user, setUser] = useState("")
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState('')
   const [loginVisible, setLoginVisible] = useState(false)
   const noteFormRef = useRef()
 
   useEffect(() => {
-    const loggedUser = window.localStorage.getItem("loggedNoteAppUser")
+    const loggedUser = window.localStorage.getItem('loggedNoteAppUser')
     if (loggedUser) {
       const user = JSON.parse(loggedUser)
       setUser(user)
@@ -28,7 +29,7 @@ const App = () => {
   const logoutOfSite = async (e) => {
     e.preventDefault()
     window.localStorage.clear()
-    setUser("")
+    setUser('')
   }
 
   const loginToSite = async (e) => {
@@ -38,17 +39,17 @@ const App = () => {
       const user = await signinService.login({ username, password })
       setUser(user)
       noteService.setToken(user.token)
-      window.localStorage.setItem("loggedNoteAppUser", JSON.stringify(user))
-      setUsername("")
-      setPassword("")
+      window.localStorage.setItem('loggedNoteAppUser', JSON.stringify(user))
+      setUsername('')
+      setPassword('')
     } catch (exception) {
-      console.log("wrong")
+      console.log('wrong')
     }
   }
 
   useEffect(() => {
     const xdd = async () => {
-      if (user !== "") {
+      if (user !== '') {
         const notes = await noteService.getAll(user.id)
         setNotes(notes)
       }
@@ -107,7 +108,7 @@ const App = () => {
   return (
     <div className="m-6">
       <h1 className=" text-4xl mb-5 text-blue-800">Notes</h1>
-      {user === "" ? (
+      {user === '' ? (
         LoginForm()
       ) : (
         <div>
@@ -123,7 +124,7 @@ const App = () => {
               className="border-black border-2 p-1 rounded-xl"
               onClick={() => setShowAll(!showAll)}
             >
-              show {showAll ? "important" : "all"}
+              show {showAll ? 'important' : 'all'}
             </button>
           </div>
           <ul>

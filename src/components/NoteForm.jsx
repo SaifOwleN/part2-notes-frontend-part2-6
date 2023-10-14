@@ -13,12 +13,12 @@ const NoteForm = ({ createNote }) => {
   }
 
   return (
-    <div>
-      <h2>create new note</h2>
+    <div className="formDiv">
+      <h2 className="text-2xl font-semibold">create new note</h2>
       <form onSubmit={addNote}>
         <input
           value={newNote}
-          className="rounded-xl border-2 border-black bg-gray-200 p-1 mr-2 "
+          className="rounded-xl border-2 border-black bg-gray-200 p-1 m-2 ml-0 "
           onChange={({ target }) => setNewNote(target.value)}
         ></input>
         <button type="submit">save</button>

@@ -14,6 +14,8 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState('')
+  const [message, setMessage] = useState('')
+
   const [loginVisible, setLoginVisible] = useState(false)
   const noteFormRef = useRef()
 
@@ -43,7 +45,10 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      console.log('wrong')
+      setMessage('Wrong Cred')
+      setTimeout(() => {
+        setMessage(null)
+      }, 4000)
     }
   }
 
@@ -108,6 +113,7 @@ const App = () => {
   return (
     <div className="m-6">
       <h1 className=" text-4xl mb-5 text-blue-800">Notes</h1>
+      <div className="error">{message}</div>
       {user === '' ? (
         LoginForm()
       ) : (
